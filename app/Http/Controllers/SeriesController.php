@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SeriesFormRequest;
 use App\Serie;
 
 class SeriesController extends Controller
@@ -18,11 +19,9 @@ class SeriesController extends Controller
 
     }
 
-    public function store (Request $request) {
+    public function store (SeriesFormRequest $request) {
 
-        $request->validate([
-            'nome' => 'required|min:3'
-        ]);
+        
         $serie = Serie::create ($request->all());
         $request->session()->flash('mensagem', "Série $serie->nome, adicionada com Sucesso");
         
