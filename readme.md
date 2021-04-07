@@ -4,4 +4,8 @@
 #####################################################################################
 #####################################################################################
 
-`` Aplicação básica, criada para fins educacionais com Laravel.
+`` Aplicação básica, criada para fins educacionais com Laravel ``
+
+###### Trabalhando sem container, apenas em ambiente local. ######
+
+###### Aprendizado com ALURA ######
