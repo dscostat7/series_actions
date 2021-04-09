@@ -20,12 +20,21 @@ Adicionar Série
 @endif
         <form method="POST">
             @csrf
-            <div class="form-group">
-                <label for="nome">Nome: </label>
-                <input type="text" class="form-control mb-3" name="nome" id="nome">
+            <div class="row">
+                <div class="col col-8">
+                    <label for="nome">Nome: </label>
+                    <input type="text" class="form-control mb-3" name="nome" id="nome">
+                </div>
+                
+                <div class="col col-2">
+                    <label for="qtd_temporadas">Temporadas: </label>
+                    <input type="number" class="form-control mb-3" name="qtd_temporadas" id="qtd_temporadas">
+                </div>
 
-                {{-- <label for="temp">Quantas Temporadas: </label>
-                <input type="text" class="form-control mb-3" name="temp" id="temp"> --}}
+                <div class="col col-2">
+                    <label for="qtd_episodios">Episódios: </label>
+                    <input type="number" class="form-control mb-3" name="qtd_episodios" id="qtd_episodios">
+                </div>
 
             </div>
             <button class="btn btn-primary mb-2">Adicionar</button>
