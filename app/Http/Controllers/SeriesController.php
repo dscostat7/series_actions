@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\SeriesFormRequest;
-use App\Serie;
-use App\Services\CriadorDeSeries;
-use App\Temporada;
-use App\Episodio;
+use App\{Serie, Temporada, Episodio};
+use App\Services\{CriadorDeSeries, RemovedorDeSerie};
+
 
 class SeriesController extends Controller
 {
@@ -28,7 +27,8 @@ class SeriesController extends Controller
         $serie = $criadorDeSerie->criarSerie(
             $request->nome,
             $request->qtd_temporadas,
-            $request->qtd_episodios
+            $request->qtd_episodios,
+            $request->id
         );
         $request->session()->flash('mensagem', "Série $serie->nome, 
         adicionada com sua(s) temporada(s) e seus episódio(s)!");
@@ -36,18 +36,10 @@ class SeriesController extends Controller
         return redirect()->route('index');
     }
 
-    public function destroy (Request $request) {
-        $serie = Serie::find($request->id);
-        $nomeSerie = $serie->nome;
-        $serie->temporadas->each(function (Temporada $temporada) {
-            $temporada->episodios->each(function (Episodio $episodio) {
-                $episodio->delete();
-            });
-            $temporada->delete();
-        });
-        $serie->delete();
-
-        // Serie::destroy($request->id);
+    public function destroy (Request $request, RemovedorDeSerie $removedorDeSerie) {
+        
+        $nomeSerie = $removedorDeSerie->removerSerie($request->id);
+        
         $request->session()->flash('mensagem', "Série $nomeSerie removida com Sucesso");
         
         return redirect()->route('index');
