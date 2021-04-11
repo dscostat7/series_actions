@@ -44,4 +44,11 @@ class SeriesController extends Controller
         
         return redirect()->route('index');
     }
+
+    public function editaNome (int $id, Request $request) {
+        $novoNome = $request->nome;
+        $serie = Serie::find($id);
+        $serie->nome = $novoNome;
+        $serie->save();
+    }
 };
