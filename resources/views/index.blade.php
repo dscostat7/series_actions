@@ -8,6 +8,7 @@ Controle de Séries
 Séries
 @endsection
 
+
 @section('conteudo')
 @include('mensagem', ['mensagem' => $mensagem])
 
