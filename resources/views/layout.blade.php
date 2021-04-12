@@ -16,6 +16,10 @@
             <h3 style="text-align:center">ActionS</h3>
         </div>
         <br>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 d-flex justify-content-between">
+            <a class="navbar-brand" href="home">Home</a>
+            <a class="text-danger" href="/sair">Sair</a>
+        </nav>
         <div class="container jumbotron">
             <h1>@yield('cabecalho')</h1>
         </div>
