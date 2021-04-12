@@ -9,11 +9,7 @@ Séries
 @endsection
 
 @section('conteudo')
-@if(!empty ($mensagem))
-<div class="alert alert-success">
- {{ $mensagem }}   
-</div>
-@endif
+@include('mensagem', ['mensagem' => $mensagem])
 
 <a href="{{route('create')}}" class="btn btn-dark mb-2">Adicionar</a>
 <ul class="list-group">
