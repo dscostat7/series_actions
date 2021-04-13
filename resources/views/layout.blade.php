@@ -17,7 +17,7 @@
         </div>
         <br>
         <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 d-flex justify-content-between">
-            <a class="navbar-brand" href="home">Home</a>
+            <a class="navbar-brand" href="/home">Home</a>
             @auth
                 <a class="text-danger" href="/sair">Sair</a>  
             @endauth
