@@ -12,7 +12,9 @@ Séries
 @section('conteudo')
 @include('mensagem', ['mensagem' => $mensagem])
 
-<a href="{{route('create')}}" class="btn btn-dark mb-2">Adicionar</a>
+@auth
+    <a href="{{route('create')}}" class="btn btn-dark mb-2">Adicionar</a>
+@endauth
 <ul class="list-group">
     @foreach ($series as $serie)
         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -29,25 +31,32 @@ Séries
             </div>
 
             <span class="d-flex">
-                <button class="btn btn-info btn-sm mr-1" onclick="exibeEdicao({{ $serie->id }})">
-                    <i class="fas fa-edit"></i>
-                </button>
+                @auth
+                    <button class="btn btn-info btn-sm mr-1" onclick="exibeEdicao({{ $serie->id }})">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                @endauth
                 <a href="/series/{{ $serie->id }}/temporadas" class="btn btn-info btn-sm mr-1">
                     <i class="fas fa-external-link-alt"></i>
                 </a>
-                <form method="post" action="/remover/{{ $serie->id }}" onsubmit="return confirm('Tem Certeza que deseja remover {{ $serie->nome }}?')">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </form> 
+                @auth
+                    <form method="post" action="/remover/{{ $serie->id }}" onsubmit="return confirm('Tem Certeza que deseja remover {{ $serie->nome }}?')">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form> 
+                @endauth
             </span>
         </li>
     @endforeach
 </ul>
 
 <script>
+
+    // Edição de nome da Serie;
+
     function exibeEdicao(serieId) {
         const nomeSerieEl = document.getElementById(`nome-serie-${serieId}`);
         const inputSerieEl = document.getElementById(`input-nome-serie-${serieId}`);

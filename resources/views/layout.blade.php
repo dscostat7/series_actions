@@ -18,7 +18,14 @@
         <br>
         <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 d-flex justify-content-between">
             <a class="navbar-brand" href="home">Home</a>
-            <a class="text-danger" href="/sair">Sair</a>
+            @auth
+                <a class="text-danger" href="/sair">Sair</a>  
+            @endauth
+            
+            @guest
+                <a href="/entrar">Entrar</a>    {{-- Aparecerá apenas quando não estiver logado --}}
+            @endguest
+            
         </nav>
         <div class="container jumbotron">
             <h1>@yield('cabecalho')</h1>

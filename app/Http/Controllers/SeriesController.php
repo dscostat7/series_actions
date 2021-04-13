@@ -10,9 +10,6 @@ use App\Services\{CriadorDeSeries, RemovedorDeSerie};
 
 class SeriesController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth');
-    }
     public function index(Request $request) {
         $series = Serie::query()->orderBy('nome')->get();
         $mensagem = $request->session()->get('mensagem');
