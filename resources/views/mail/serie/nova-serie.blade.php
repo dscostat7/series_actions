@@ -3,6 +3,6 @@
 
 # Nova Série
 ### {{ $nome }}
-### {{ $qtdTemporadas }} Temporadas com {{ $qtdEpisodios }} episódios!
+### Possui {{ $qtdTemporadas }} Temporadas com {{ $qtdEpisodios }} episódios!
 
 @endcomponent

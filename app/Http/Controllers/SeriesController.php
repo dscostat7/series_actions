@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NovaSerie;
 use Illuminate\Http\Request;
 use App\Http\Requests\SeriesFormRequest;
-use App\{Serie, Temporada, Episodio};
+use App\{Serie, Temporada, Episodio, User};
 use App\Services\{CriadorDeSeries, RemovedorDeSerie};
 
 
@@ -30,6 +31,24 @@ class SeriesController extends Controller
             $request->qtd_episodios,
             $request->id
         );
+
+
+        // $user = $request->user();
+
+        $users = User::all();
+        foreach ($users as $indice => $user) {
+
+            $multiplicador = $indice + 1;
+            $email = new \App\Mail\NovaSerie ($request->nome, $request->qtd_temporadas, $request->qtd_episodios);
+            $email->subject = 'Nova Série Adicionada';
+
+            $quando = now()->addSecond($multiplicador * 5);
+            \Illuminate\Support\Facades\Mail::to($user)->later($quando, $email);
+            // sleep(5);
+        } // Enviando email de Nova Série cadastrada para todos os usuários cadastrados no sistema.
+
+        
+
         $request->session()->flash('mensagem', "Série $serie->nome, 
         adicionada com sua(s) temporada(s) e seus episódio(s)!");
         
