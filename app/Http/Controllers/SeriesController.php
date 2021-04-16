@@ -7,6 +7,7 @@ use App\{Serie, Temporada, Episodio, User};
 use Illuminate\Http\Request;
 use App\Http\Requests\SeriesFormRequest;
 use App\Services\{CriadorDeSeries, RemovedorDeSerie};
+use Illuminate\Http\Support\Facades\Auth;
 
 
 class SeriesController extends Controller
@@ -26,16 +27,17 @@ class SeriesController extends Controller
 
         
         $capa = null;
-        
+        // $capa = $request->file('capa')->store('capas');
         if ($request->hasFile('capa')) {
             $capa = $request->file('capa')->store('capas');
-        }
+        } 
+        
         
         $serie = $criadorDeSerie->criarSerie(
             $request->nome,
             $request->qtd_temporadas,
             $request->qtd_episodios,
-            $request->id,
+            // $request->id,
             $capa
         );
 
