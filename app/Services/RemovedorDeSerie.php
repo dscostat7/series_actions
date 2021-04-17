@@ -4,6 +4,7 @@ namespace App\Services;
 use App\{Serie, Temporada, Episodio};
 use Illuminate\Support\Facades\DB;
 use Storage;
+use App\Events\SerieApagada;
 
 class RemovedorDeSerie {
     public function removerSerie (int $serieId ): string {
@@ -20,10 +21,9 @@ class RemovedorDeSerie {
                 $temporada->delete();
             });
             $serie->delete();
-            
-            if ($serie->capa) {
-                Storage::delete($serie->capa);
-            }
+
+            $evento = new SerieApagada($serie);
+            event($evento);
         });
 
         return $nomeSerie;
