@@ -14,6 +14,9 @@ class RemovedorDeSerie {
 
             $serie = Serie::find($serieId);
             $nomeSerie = $serie->nome;
+            $serieObj = (object) $serie->toArray();
+
+
             $serie->temporadas->each(function (Temporada $temporada) {
                 $temporada->episodios->each(function (Episodio $episodio) {
                     $episodio->delete();
@@ -22,7 +25,7 @@ class RemovedorDeSerie {
             });
             $serie->delete();
 
-            $evento = new SerieApagada($serie);
+            $evento = new SerieApagada($serieObj);
             event($evento);
         });
 
