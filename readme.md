@@ -3,7 +3,7 @@
 
 _________________________________________________________________
 
-`` Aplicação básica, criada para fins educacionais com Laravel ``
+`` Application Laravel, create for study ``
 
 'Utilizando PHP Artisan e seus componentes'
 
