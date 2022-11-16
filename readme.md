@@ -2,7 +2,7 @@
 	ActionS - Application for remember episodes of series <Component_feedback />
 </h1>
 
-<p align="center">Using Laravel </p>
+<p align="center">Using Laravel </p> 
 
 <p align="center">
   <img alt="License" src="https://img.shields.io/badge/Laravel-red">
